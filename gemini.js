@@ -1,11 +1,13 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const readline = require("readline");
+require("dotenv").config({ path: "./.env" });
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-const genAI = new GoogleGenerativeAI("AIzaSyDVa9AZHBahUJ1TBU5Vc0xnxEIq6yj5yR0");
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const run = () => {
   rl.question("Введите запрос к Gemini: ", async (question) => {
     if (question !== "close") {
